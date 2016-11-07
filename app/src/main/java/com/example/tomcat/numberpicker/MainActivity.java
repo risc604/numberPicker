@@ -19,18 +19,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import static java.lang.String.format;
 
-public class MainActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener {
-    public NumberPicker nP2, nP3;
+public class MainActivity extends AppCompatActivity implements NumberPicker.OnValueChangeListener
+{
     public TextView tv;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //tv = (TextView) findViewById(R.id.textview01);
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void show()
@@ -83,15 +79,16 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         intPicker.setMinValue(36);
         intPicker.setMaxValue(42);
         intPicker.setWrapSelectorWheel(true);
-        intPicker.setOnValueChangedListener((NumberPicker.OnValueChangeListener) this);
+        intPicker.setOnValueChangedListener(this);
 
         final NumberPicker floatPicker = (NumberPicker) dialog.findViewById(R.id.numberPicker2);
         floatPicker.setMinValue(0);
         floatPicker.setMaxValue(99);
         floatPicker.setWrapSelectorWheel(true);
-        floatPicker.setOnValueChangedListener((NumberPicker.OnValueChangeListener) this);
+        floatPicker.setOnValueChangedListener(this);
 
-        setBTN.setOnClickListener(new View.OnClickListener() {
+        setBTN.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
                 tv.setText(String.valueOf(intPicker.getValue()) + "." + String.valueOf(floatPicker.getValue()));
@@ -99,9 +96,11 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
             }
         });
 
-        cancelBTN.setOnClickListener(new View.OnClickListener() {
+        cancelBTN.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 dialog.dismiss();
             }
         });
@@ -127,39 +126,5 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Main Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
 }
